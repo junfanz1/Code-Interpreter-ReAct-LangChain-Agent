@@ -4,9 +4,11 @@ verify_ssl = true
 name = "pip_conf_index_global"
 
 [packages]
-langchain-openai = "*"
 black = "*"
 python-dotenv = "*"
+langchain-openai = "*"
+langchain-community = "*"
+langchainhub = "*"
 
 [dev-packages]
 
