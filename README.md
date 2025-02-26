@@ -27,7 +27,7 @@ Before running the project, ensure you have the following installed:
 1.  **Clone the Repository:**
 
     ```bash
-    git clone [https://github.com/junfanz1/react-langchain.git](https://www.google.com/search?q=https://github.com/junfanz1/react-langchain.git)
+    git clone https://github.com/junfanz1/react-langchain.git
     cd react-langchain
     ```
 
