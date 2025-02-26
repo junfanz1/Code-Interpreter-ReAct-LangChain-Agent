@@ -1,6 +1,6 @@
 
 <!-- TOC --><a name="react-langchain-agent-example"></a>
-# React LangChain Agent Example
+# ReAct LangChain Agent Example
 
 This repository demonstrates the creation of a simple ReAct agent using LangChain, integrated with a custom tool to calculate the length of a given text. It serves as a foundational example for building more complex, tool-augmented LLM applications.
 
