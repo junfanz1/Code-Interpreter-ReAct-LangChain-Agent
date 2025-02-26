@@ -49,13 +49,13 @@ This project is intended to be a stepping stone for building more complex and so
 
 Example Input:
 
-`md
+```python
 What is the length of the word: DOG
-`
+```
 
 Example Prompt Template:
 
-`md
+```python
 template = """
     Answer the following questions as best you can. You have access to the following tools:
 
@@ -77,11 +77,11 @@ template = """
     Question: {input}
     Thought: {agent_scratchpad}
     """
-`
+```
 
 Example Output (with intermediate CoT steps):
 
-`md
+```python
 Hello ReAct LangChain!
 ***Prompt to LLM was:***
 Human: 
@@ -151,7 +151,7 @@ return_values={'output': '3'} log='I now know the final answer\nFinal Answer: 3'
 {'output': '3'}
 
 Process finished with exit code 0
-`
+```
 
 <!-- TOC --><a name="llm-technology-stack"></a>
 ## LLM Technology Stack
