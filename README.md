@@ -47,6 +47,112 @@ The primary goal of this project is to provide a practical, hands-on example of 
 
 This project is intended to be a stepping stone for building more complex and sophisticated agents capable of performing a wide range of tasks by interacting with tools and external data sources.
 
+Example Input:
+
+`md
+What is the length of the word: DOG
+`
+
+Example Prompt Template:
+
+`md
+template = """
+    Answer the following questions as best you can. You have access to the following tools:
+
+    {tools}
+
+    Use the following format:
+
+    Question: the input question you must answer
+    Thought: you should always think about what to do
+    Action: the action to take, should be one of [{tool_names}]
+    Action Input: the input to the action
+    Observation: the result of the action
+    ... (this Thought/Action/Action Input/Observation can repeat N times)
+    Thought: I now know the final answer
+    Final Answer: the final answer to the original input question
+
+    Begin!
+
+    Question: {input}
+    Thought: {agent_scratchpad}
+    """
+`
+
+Example Output (with intermediate CoT steps):
+
+`md
+Hello ReAct LangChain!
+***Prompt to LLM was:***
+Human: 
+    Answer the following questions as best you can. You have access to the following tools:
+
+    get_text_length(text: str) -> int - Returns the length of a text by characters
+
+    Use the following format:
+
+    Question: the input question you must answer
+    Thought: you should always think about what to do
+    Action: the action to take, should be one of [get_text_length]
+    Action Input: the input to the action
+    Observation: the result of the action
+    ... (this Thought/Action/Action Input/Observation can repeat N times)
+    Thought: I now know the final answer
+    Final Answer: the final answer to the original input question
+
+    Begin!
+
+    Question: What is the length of the word: DOG
+    Thought: 
+    
+******
+***LLM Response:***
+I should use the get_text_length function to determine the length of the word "DOG".
+    Action: get_text_length
+    Action Input: "DOG"
+    
+******
+tool='get_text_length' tool_input='DOG"\n' log='I should use the get_text_length function to determine the length of the word "DOG".\n    Action: get_text_length\n    Action Input: "DOG"\n    '
+get_text_length enter with text='DOG"\n'
+observation=3
+***Prompt to LLM was:***
+Human: 
+    Answer the following questions as best you can. You have access to the following tools:
+
+    get_text_length(text: str) -> int - Returns the length of a text by characters
+
+    Use the following format:
+
+    Question: the input question you must answer
+    Thought: you should always think about what to do
+    Action: the action to take, should be one of [get_text_length]
+    Action Input: the input to the action
+    Observation: the result of the action
+    ... (this Thought/Action/Action Input/Observation can repeat N times)
+    Thought: I now know the final answer
+    Final Answer: the final answer to the original input question
+
+    Begin!
+
+    Question: What is the length of the word: DOG
+    Thought: I should use the get_text_length function to determine the length of the word "DOG".
+    Action: get_text_length
+    Action Input: "DOG"
+    
+Observation: 3
+Thought: 
+    
+******
+***LLM Response:***
+I now know the final answer
+Final Answer: 3
+******
+return_values={'output': '3'} log='I now know the final answer\nFinal Answer: 3'
+{'output': '3'}
+
+Process finished with exit code 0
+`
+
 <!-- TOC --><a name="llm-technology-stack"></a>
 ## LLM Technology Stack
 
