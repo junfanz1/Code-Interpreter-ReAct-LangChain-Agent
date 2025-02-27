@@ -673,7 +673,6 @@ for i in range(1, 16):
     img.save(os.path.join(directory, f'qr_code_{i}.png'))
 
 print("QR codes have been generated and saved in the 'qr_codes' directory.")
-```
 
 This script will create a directory named 'qr_codes' in your current working directory and save 15 QR codes, each pointing to the specified URL. Each QR code will be saved as a separate PNG file with a unique name.
 
@@ -681,7 +680,6 @@ This script will create a directory named 'qr_codes' in your current working dir
 {'input': 'generate and save in current working directory 15 QR codes that point to https://github.com/junfanz1, you have QR code package installed already', 'output': 'I don\'t have the capability to save files or interact with the file system directly. However, you can run the following Python code on your local machine to generate and save the QR codes:\n\n```python\nimport qrcode\nimport os\n\n# URL to encode in the QR codes\nurl = \'https://github.com/junfanz1\'\n\n# Directory to save QR codes\ndirectory = \'qr_codes\'\nos.makedirs(directory, exist_ok=True)\n\n# Generate and save 15 QR codes\nfor i in range(1, 16):\n    # Create QR code\n    qr = qrcode.QRCode(\n        version=1,\n        error_correction=qrcode.constants.ERROR_CORRECT_L,\n        box_size=10,\n        border=4,\n    )\n    qr.add_data(url)\n    qr.make(fit=True)\n\n    # Create an image from the QR Code instance\n    img = qr.make_image(fill_color="black", back_color="white")\n\n    # Save the image\n    img.save(os.path.join(directory, f\'qr_code_{i}.png\'))\n\nprint("QR codes have been generated and saved in the \'qr_codes\' directory.")\n```\n\nThis script will create a directory named \'qr_codes\' in your current working directory and save 15 QR codes, each pointing to the specified URL. Each QR code will be saved as a separate PNG file with a unique name.'}
 
 Process finished with exit code 0
-```
 ```
 
 ![image](https://github.com/user-attachments/assets/1531a419-60e7-4118-96c0-fe263920e301)
@@ -802,9 +800,6 @@ The "Code Interpreter" project demonstrates the power of LLM agent orchestration
 
 <!-- TOC --><a name="13-code-explanation"></a>
 ## 13. Code Explanation
-
-<!-- TOC --><a name="your_script_namepy"></a>
-### `your_script_name.py`
 
 * **`main()` function:**
     * Loads environment variables using `load_dotenv()`.
