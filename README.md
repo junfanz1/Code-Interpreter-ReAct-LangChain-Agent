@@ -1,4 +1,7 @@
 
+This project combines two functionalities: a Code Interpreter using LLM Agent Orchestration and Tool Utilization, and a ReAct LangChain Agent example.
+
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 <!-- TOC --><a name="react-langchain-agent-example"></a>
 # ReAct LangChain Agent
 
@@ -9,8 +12,7 @@ This repository demonstrates the creation of a simple ReAct agent using LangChai
 [![Star History Chart](https://api.star-history.com/svg?repos=junfanz1/react-langchain&type=Date)](https://star-history.com/#junfanz1/react-langchain&Date)
 
 ## Contents
-<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
-
+- [ReAct LangChain Agent](react-langchain-agent-example)
    * [Project Purpose](#project-purpose)
    * [LLM Technology Stack](#llm-technology-stack)
    * [Challenges and Difficulties](#challenges-and-difficulties)
@@ -28,8 +30,28 @@ This repository demonstrates the creation of a simple ReAct agent using LangChai
    * [How it Works](#how-it-works)
    * [Custom Output Parser (`ReActOutputParser`)](#custom-output-parser-reactoutputparser)
    * [Future Improvements](#future-improvements)
+- [Code Interpreter: LLM Agent Orchestration and Tool Utilization](#code-interpreter-llm-agent-orchestration-and-tool-utilization)
+   * [1. Purpose of the Project](#1-purpose-of-the-project)
+   * [2. Input and Output](#2-input-and-output)
+   * [3. LLM Technology Stack](#3-llm-technology-stack)
+   * [4. Challenges and Difficulties](#4-challenges-and-difficulties)
+   * [5. Future Business Impact and Further Improvements](#5-future-business-impact-and-further-improvements)
+   * [6. Target Audience and Benefits](#6-target-audience-and-benefits)
+   * [7. Advantages and Disadvantages](#7-advantages-and-disadvantages)
+   * [8. Tradeoffs](#8-tradeoffs)
+   * [9. Highlight and Summary](#9-highlight-and-summary)
+   * [10. Future Enhancements](#10-future-enhancements)
+   * [11. Prerequisites](#11-prerequisites)
+   * [12. Setup](#12-setup)
+   * [13. Code Explanation](#13-code-explanation)
+      + [`your_script_name.py`](#your_script_namepy)
+   * [14. How it Works](#14-how-it-works)
+   * [15. Crucial Function Elaboration](#15-crucial-function-elaboration)
+   * [16. Future Improvements](#16-future-improvements)
+   * [17. Important Notes](#17-important-notes)
    * [Contributing](#contributing)
    * [License](#license)
+   * [Reference](#reference)
 
 <!-- TOC end -->
 
@@ -368,6 +390,459 @@ The `ReActOutputParser` class is crucial for handling the agent's output. It use
 * Add logging.
 * Add unit tests.
 
+---
+
+<!-- TOC --><a name="code-interpreter-llm-agent-orchestration-and-tool-utilization"></a>
+# Code Interpreter: LLM Agent Orchestration and Tool Utilization
+
+<!-- TOC --><a name="1-purpose-of-the-project"></a>
+## 1. Purpose of the Project
+
+The "Code Interpreter" project demonstrates the orchestration of multiple Language Learning Model (LLM) agents using LangChain, each with specialized tools, to perform complex tasks. It showcases the ability to dynamically route user queries to the appropriate agent based on the nature of the request. The primary goal is to illustrate how LLMs can be used to automate tasks that require both code execution and data analysis.
+
+<!-- TOC --><a name="2-input-and-output"></a>
+## 2. Input and Output
+
+* **Input:** Natural language queries.
+* **Output:**
+    * Results from Python code execution (e.g., generated QR codes).
+    * Answers to questions about CSV data.
+    * Orchestrated responses from multiple agents.
+
+```python
+Start...
+
+
+> Entering new AgentExecutor chain...
+Python REPL can execute arbitrary code. Use with caution.
+Thought: Do I need to use a tool? Yes
+Action: Python_REPL
+Action Input: 
+import qrcode
+import os
+
+# Ensure the directory for QR codes exists
+os.makedirs('qr_codes', exist_ok=True)
+
+# URL to encode in the QR codes
+url = 'https://github.com/junfanz1'
+
+# Generate and save 15 QR codes
+for i in range(1, 16):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(url)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.save(f'qr_codes/qr_code_{i}.png')
+
+print("15 QR codes generated and saved in the 'qr_codes' directory.")ModuleNotFoundError("No module named 'PIL'")Do I need to use a tool? Yes
+Action: Python_REPL
+Action Input: 
+import qrcode
+import os
+
+# Ensure the directory for QR codes exists
+os.makedirs('qr_codes', exist_ok=True)
+
+# URL to encode in the QR codes
+url = 'https://github.com/junfanz1'
+
+# Generate and save 15 QR codes
+for i in range(1, 16):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(url)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.save(f'qr_codes/qr_code_{i}.png')
+
+print("15 QR codes generated and saved in the 'qr_codes' directory.")ModuleNotFoundError("No module named 'PIL'")Do I need to use a tool? No
+Final Answer: I don't know
+
+> Finished chain.
+
+Process finished with exit code 0
+```
+
+![image](https://github.com/user-attachments/assets/36ca20c6-63b2-4d3d-8949-18f83e3625ab)
+
+```python
+Start...
+
+
+> Entering new AgentExecutor chain...
+Thought: Do I need to use a tool? Yes
+Action: Python_REPL
+Action Input: 
+import qrcode
+import os
+
+# Ensure the directory for QR codes exists
+os.makedirs('qr_codes', exist_ok=True)
+
+# URL to encode in the QR codes
+url = 'https://github.com/junfanz1'
+
+# Generate and save 15 QR codes
+for i in range(1, 16):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(url)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.save(f'qr_codes/qr_code_{i}.png')
+
+print("15 QR codes generated and saved in the 'qr_codes' directory.")Python REPL can execute arbitrary code. Use with caution.
+15 QR codes generated and saved in the 'qr_codes' directory.
+Do I need to use a tool? No
+Final Answer: 15 QR codes have been generated and saved in the 'qr_codes' directory, each pointing to https://github.com/junfanz1.
+
+> Finished chain.
+
+Process finished with exit code 0
+```
+
+![image](https://github.com/user-attachments/assets/e6ede65b-8672-4181-b2b3-ff52d05b7de5)
+
+```python
+> Entering new AgentExecutor chain...
+Thought: The question asks for the number of columns in a CSV file, but the provided data is from a dataframe `df`. I can use the dataframe to determine the number of columns, assuming it represents the data from the CSV file.
+
+Action: python_repl_ast
+Action Input: len(df.columns)10I now know the final answer.
+
+Final Answer: There are 10 columns in the file bar_data.csv.
+
+> Finished chain.
+
+
+> Entering new AgentExecutor chain...
+Thought: The question asks for the change in the 'close' column of the dataframe `df`. To find the change, we need to calculate the difference between consecutive values in the 'close' column.
+
+Action: python_repl_ast
+Action Input: df['close'].diff()0            NaN
+1    -333.805297
+2      81.356999
+3    -107.202870
+4      58.058663
+5    -112.624533
+6     -16.411290
+7     -52.851474
+8     152.532059
+9       8.513261
+10     26.174594
+11     14.154657
+12    -46.251249
+13     23.255340
+14     12.585140
+15    -32.801214
+16    -42.369213
+17     -4.872211
+Name: close, dtype: float64I now know the final answer.
+
+Final Answer: The change in the 'close' column of the dataframe `df` is as follows:
+- For the first row, the change is NaN since there is no previous value.
+- For the second row, the change is approximately -333.81.
+- For the third row, the change is approximately 81.36.
+- For the fourth row, the change is approximately -107.20.
+- For the fifth row, the change is approximately 58.06.
+
+> Finished chain.
+```
+
+![image](https://github.com/user-attachments/assets/4fb764e6-9114-4490-9401-1eeddbc613b3)
+
+```python
+> Entering new AgentExecutor chain...
+Thought: Do I need to use a tool? Yes
+Action: CSV Agent
+Action Input: Which date has the biggest volume in bar_data.csv?
+
+> Entering new AgentExecutor chain...
+Thought: To find the date with the biggest volume, I need to identify the row in the dataframe `df` where the 'volume' column has its maximum value, and then retrieve the 'datetime' value for that row.
+
+Action: python_repl_ast
+Action Input: df.loc[df['volume'].idxmax(), 'datetime']2024-10-08 00:00:00I now know the final answer.
+
+Final Answer: The date with the biggest volume in the dataframe is 2024-10-08.
+
+> Finished chain.
+{'input': 'Which date has the biggest volume in bar_data.csv?', 'output': 'The date with the biggest volume in the dataframe is 2024-10-08.'}Do I need to use a tool? No
+Final Answer: The date with the biggest volume is 2024-10-08.
+
+> Finished chain.
+{'input': 'which date has the biggest volume?', 'output': 'The date with the biggest volume is 2024-10-08.'}
+
+Process finished with exit code 0
+```
+
+![image](https://github.com/user-attachments/assets/bc4bc01c-84e7-485f-9f39-cf2874484f96)
+
+```python
+> Entering new AgentExecutor chain...
+Thought: Do I need to use a tool? Yes
+Action: Python Agent
+Action Input: Generate and save 15 QR codes that point to https://github.com/junfanz1 in the current working directory using a QR code package. Each QR code should be saved as a separate file with a unique name.
+
+> Entering new AgentExecutor chain...
+Thought: Do I need to use a tool? Yes
+Action: Python_REPL
+Action Input: 
+```python
+import qrcode
+
+# URL to generate QR codes for
+url = "https://github.com/junfanz1"
+
+# Generate and save 15 QR codes
+for i in range(15):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(url)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.save(f"qr_code_{i+1}.png")
+```Do I need to use a tool? No
+Final Answer: I don't have the capability to save files or interact with the file system directly. You can run the provided Python code on your local machine to generate and save the QR codes.
+
+> Finished chain.
+{'input': 'Generate and save 15 QR codes that point to https://github.com/junfanz1 in the current working directory using a QR code package. Each QR code should be saved as a separate file with a unique name.', 'output': "I don't have the capability to save files or interact with the file system directly. You can run the provided Python code on your local machine to generate and save the QR codes."}Do I need to use a tool? No
+Final Answer: I don't have the capability to save files or interact with the file system directly. However, you can run the following Python code on your local machine to generate and save the QR codes:
+
+```python
+import qrcode
+import os
+
+# URL to encode in the QR codes
+url = 'https://github.com/junfanz1'
+
+# Directory to save QR codes
+directory = 'qr_codes'
+os.makedirs(directory, exist_ok=True)
+
+# Generate and save 15 QR codes
+for i in range(1, 16):
+    # Create QR code
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(url)
+    qr.make(fit=True)
+
+    # Create an image from the QR Code instance
+    img = qr.make_image(fill_color="black", back_color="white")
+
+    # Save the image
+    img.save(os.path.join(directory, f'qr_code_{i}.png'))
+
+print("QR codes have been generated and saved in the 'qr_codes' directory.")
+```
+
+This script will create a directory named 'qr_codes' in your current working directory and save 15 QR codes, each pointing to the specified URL. Each QR code will be saved as a separate PNG file with a unique name.
+
+> Finished chain.
+{'input': 'generate and save in current working directory 15 QR codes that point to https://github.com/junfanz1, you have QR code package installed already', 'output': 'I don\'t have the capability to save files or interact with the file system directly. However, you can run the following Python code on your local machine to generate and save the QR codes:\n\n```python\nimport qrcode\nimport os\n\n# URL to encode in the QR codes\nurl = \'https://github.com/junfanz1\'\n\n# Directory to save QR codes\ndirectory = \'qr_codes\'\nos.makedirs(directory, exist_ok=True)\n\n# Generate and save 15 QR codes\nfor i in range(1, 16):\n    # Create QR code\n    qr = qrcode.QRCode(\n        version=1,\n        error_correction=qrcode.constants.ERROR_CORRECT_L,\n        box_size=10,\n        border=4,\n    )\n    qr.add_data(url)\n    qr.make(fit=True)\n\n    # Create an image from the QR Code instance\n    img = qr.make_image(fill_color="black", back_color="white")\n\n    # Save the image\n    img.save(os.path.join(directory, f\'qr_code_{i}.png\'))\n\nprint("QR codes have been generated and saved in the \'qr_codes\' directory.")\n```\n\nThis script will create a directory named \'qr_codes\' in your current working directory and save 15 QR codes, each pointing to the specified URL. Each QR code will be saved as a separate PNG file with a unique name.'}
+
+Process finished with exit code 0
+```
+
+![image](https://github.com/user-attachments/assets/1531a419-60e7-4118-96c0-fe263920e301)
+
+
+<!-- TOC --><a name="3-llm-technology-stack"></a>
+## 3. LLM Technology Stack
+
+* **LangChain:** For agent creation, tool management, and orchestration.
+* **LangChain Hub:** for pulling base agent templates.
+* **LangChain Experimental Tools:** for Python REPL and CSV Agent.
+* **OpenAI Chat Models (gpt-4-turbo):** As the core LLM for reasoning and task execution.
+* **dotenv:** For managing environment variables.
+* **Python REPL Tool:** For executing Python code.
+* **CSV Agent:** For querying and analyzing CSV data using Pandas.
+
+<!-- TOC --><a name="4-challenges-and-difficulties"></a>
+## 4. Challenges and Difficulties
+
+* **Agent Reliability:** Ensuring agents consistently follow instructions and produce accurate results.
+* **Tool Integration:** Seamlessly integrating diverse tools (Python REPL, CSV analysis) with the LLM.
+* **Error Handling:** Managing and debugging errors during code execution and data analysis.
+* **Prompt Engineering:** Designing effective prompts to guide agent behavior.
+* **Router Logic:** Properly routing queries to the correct agents.
+* **Managing Dependencies**: Ensuring all necessary python packages are installed.
+
+<!-- TOC --><a name="5-future-business-impact-and-further-improvements"></a>
+## 5. Future Business Impact and Further Improvements
+
+* **Automation of Complex Workflows:** Automating tasks that require a combination of data analysis and code execution.
+* **Enhanced Data Analysis:** Providing natural language access to data analysis tools.
+* **Personalized Automation:** Tailoring agent behavior to specific user needs.
+* **Improved Customer Service:** Automating responses to complex customer queries.
+* **Expanded Tool Integration:** Integrating more tools to handle a wider range of tasks.
+* **Robust Error Handling:** Implementing more sophisticated error detection and recovery mechanisms.
+* **Improved Routing Logic:** Refining the routing logic to handle more complex queries and agent interactions.
+* **User Interface:** Creating a user-friendly interface for interacting with the agents.
+
+<!-- TOC --><a name="6-target-audience-and-benefits"></a>
+## 6. Target Audience and Benefits
+
+* **Developers:** For building and deploying LLM-powered applications.
+* **Data Analysts:** For simplifying data analysis tasks.
+* **Automation Engineers:** For automating complex workflows.
+* **Businesses:** For improving efficiency and customer service.
+* **Benefits:**
+    * Increased productivity.
+    * Simplified data analysis.
+    * Automated task execution.
+    * Enhanced decision-making.
+
+<!-- TOC --><a name="7-advantages-and-disadvantages"></a>
+## 7. Advantages and Disadvantages
+
+* **Advantages:**
+    * Flexibility: Can handle a wide range of tasks.
+    * Automation: Automates complex workflows.
+    * Natural Language Interface: Simplifies interaction with data and code.
+* **Disadvantages:**
+    * Complexity: Requires careful design and implementation.
+    * Error Prone: Can produce errors if not properly configured.
+    * Cost: LLM API calls can be expensive.
+
+<!-- TOC --><a name="8-tradeoffs"></a>
+## 8. Tradeoffs
+
+* **Accuracy vs. Speed:** Balancing the need for accurate results with the desire for fast execution.
+* **Flexibility vs. Complexity:** Balancing the flexibility of the agent with the complexity of the implementation.
+* **Cost vs. Performance:** Balancing the cost of LLM API calls with the performance of the agent.
+
+<!-- TOC --><a name="9-highlight-and-summary"></a>
+## 9. Highlight and Summary
+
+The "Code Interpreter" project demonstrates the power of LLM agent orchestration by combining a Python REPL agent with a CSV analysis agent. It showcases how natural language queries can be used to trigger complex tasks involving code execution and data analysis. The router agent is a crucial component that directs queries to the appropriate agent, enabling seamless integration of diverse tools.
+
+<!-- TOC --><a name="10-future-enhancements"></a>
+## 10. Future Enhancements
+
+* Implement a more sophisticated routing mechanism.
+* Integrate more tools and agents.
+* Add error handling and debugging capabilities.
+* Develop a user interface for interacting with the agents.
+* Implement a long term memory solution for the agents.
+
+<!-- TOC --><a name="11-prerequisites"></a>
+## 11. Prerequisites
+
+* Python 3.7+
+* `openai` Python library
+* `langchain` python library
+* `python-dotenv` python library
+* `qrcode` python library
+* A valid OpenAI API key, stored in a `.env` file as `OPENAI_API_KEY`.
+* A `bar_data.csv` file in the specified path.
+
+<!-- TOC --><a name="12-setup"></a>
+## 12. Setup
+
+1.  Clone the repository.
+2.  Install the required Python packages:
+
+    ```bash
+    pip install openai langchain python-dotenv langchain-experimental qrcode
+    ```
+
+3.  Create a `.env` file in the project root and add your OpenAI API key:
+
+    ```
+    OPENAI_API_KEY=your_openai_api_key
+    ```
+
+4.  Place your `bar_data.csv` file in the path specified in the code.
+5.  Run the python script:
+
+    ```bash
+    python your_script_name.py
+    ```
+
+<!-- TOC --><a name="13-code-explanation"></a>
+## 13. Code Explanation
+
+<!-- TOC --><a name="your_script_namepy"></a>
+### `your_script_name.py`
+
+* **`main()` function:**
+    * Loads environment variables using `load_dotenv()`.
+    * Defines the instructions and prompt for the Python REPL agent.
+    * Creates a `PythonREPLTool` instance.
+    * Creates a `create_react_agent` instance using LangChain.
+    * Creates an `AgentExecutor` to run the agent.
+    * Invokes the agent to generate QR codes.
+    * Creates a `create_csv_agent` with the path to the csv file.
+    * Invokes the csv agent to answer questions about the csv file.
+    * Creates a `python_agent_executor_wrapper` function that wraps the python agent executor.
+    * Creates a `grand_tools` list containing the python agent and the csv agent.
+    * Creates a `grand_prompt` using the base prompt.
+    * Creates a `grand_agent` using the grand prompt and grand tools.
+    * Creates a `grand_agent_executor` and invokes it with questions.
+* **`python_agent_executor_wrapper(query: str) -> Any`:**
+    * Wraps the `agent_executor.invoke()` method to allow it to be used as a tool.
+
+<!-- TOC --><a name="14-how-it-works"></a>
+## 14. How it Works
+
+1.  The script initializes two agents: a Python REPL agent and a CSV analysis agent.
+2.  The Python REPL agent can execute Python code to perform tasks like generating QR codes.
+3.  The CSV analysis agent can query and analyze CSV data using Pandas.
+4.  A "grand" agent acts as a router, directing user queries to the appropriate agent based on the query's nature.
+5.  The `AgentExecutor` runs the agents and manages the interaction between them and the tools.
+6.  The `create_react_agent` function creates an agent that uses the ReAct framework, allowing it to reason and act.
+7.  The `create_csv_agent` function creates an agent that can query and analyze CSV data.
+
+<!-- TOC --><a name="15-crucial-function-elaboration"></a>
+## 15. Crucial Function Elaboration
+
+* **`create_react_agent`:** This function is crucial as it creates the agents that are used to perform the tasks. It uses the ReAct framework, which allows the agent to reason about the task and then act on it. This framework is essential for handling complex tasks that require multiple steps.
+* **`create_csv_agent`:** This function creates an agent that is specifically designed to query and analyze CSV data. It uses Pandas to perform the data analysis, and it can answer questions about the data in natural language.
+* **`grand_agent_executor.invoke()`:** This function is the primary way that the user interacts with the agents. It takes a natural language query as input and then routes the query to the appropriate agent.
+* **`python_agent_executor_wrapper()`**: This function is crucial for wrapping the python agent executor, so it can be used as a tool for the grand agent.
+
+<!-- TOC --><a name="16-future-improvements"></a>
+## 16. Future Improvements
+
+* Implement a more robust error handling mechanism.
+* Add support for more data formats.
+* Develop a user interface for interacting with the agents.
+* Implement long term memory for the agents.
+
+<!-- TOC --><a name="17-important-notes"></a>
+## 17. Important Notes
+
+* Ensure that your OpenAI API key is secure.
+* Be mindful of the cost of LLM API calls.
+* The `bar_data.csv` file should be in the specified path.
+* The code makes use of `gpt-4-turbo`, be sure you have access to this model.
+
 <!-- TOC --><a name="contributing"></a>
 ## Contributing
 
@@ -378,6 +853,7 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 
 This project is licensed under the MIT License.
 
+<!-- TOC --><a name="reference"></a>
 ## Reference
 
 [Eden Marco: LangChain- Develop LLM powered applications with LangChain](https://www.udemy.com/course/langchain/?srsltid=AfmBOooPg0Xkc19q5W1430Dzq6MHGKWqHtq5a1WY4uUl9sQkrh_b_pej&couponCode=ST4MT240225B)
