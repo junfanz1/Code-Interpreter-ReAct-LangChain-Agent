@@ -501,13 +501,13 @@ Action Input:
 import qrcode
 import os
 
-# Ensure the directory for QR codes exists
+  # Ensure the directory for QR codes exists
 os.makedirs('qr_codes', exist_ok=True)
 
-# URL to encode in the QR codes
+  # URL to encode in the QR codes
 url = 'https://github.com/junfanz1'
 
-# Generate and save 15 QR codes
+  # Generate and save 15 QR codes
 for i in range(1, 16):
     qr = qrcode.QRCode(
         version=1,
@@ -532,7 +532,7 @@ Process finished with exit code 0
 
 ![image](https://github.com/user-attachments/assets/e6ede65b-8672-4181-b2b3-ff52d05b7de5)
 
-```python
+```bash
 > Entering new AgentExecutor chain...
 Thought: The question asks for the number of columns in a CSV file, but the provided data is from a dataframe `df`. I can use the dataframe to determine the number of columns, assuming it represents the data from the CSV file.
 
@@ -619,12 +619,11 @@ Action Input:
 ```python
 import qrcode
 
-<!-- TOC --><a name="url-to-generate-qr-codes-for"></a>
-# URL to generate QR codes for
+
+URL to generate QR codes for
 url = "https://github.com/junfanz1"
 
-<!-- TOC --><a name="generate-and-save-15-qr-codes"></a>
-# Generate and save 15 QR codes
+Generate and save 15 QR codes
 for i in range(15):
     qr = qrcode.QRCode(
         version=1,
@@ -648,17 +647,14 @@ Final Answer: I don't have the capability to save files or interact with the fil
 import qrcode
 import os
 
-<!-- TOC --><a name="url-to-encode-in-the-qr-codes"></a>
-# URL to encode in the QR codes
+  # URL to encode in the QR codes
 url = 'https://github.com/junfanz1'
 
-<!-- TOC --><a name="directory-to-save-qr-codes"></a>
-# Directory to save QR codes
+  # Directory to save QR codes
 directory = 'qr_codes'
 os.makedirs(directory, exist_ok=True)
 
-<!-- TOC --><a name="generate-and-save-15-qr-codes-1"></a>
-# Generate and save 15 QR codes
+  # Generate and save 15 QR codes
 for i in range(1, 16):
     # Create QR code
     qr = qrcode.QRCode(
@@ -685,6 +681,7 @@ This script will create a directory named 'qr_codes' in your current working dir
 {'input': 'generate and save in current working directory 15 QR codes that point to https://github.com/junfanz1, you have QR code package installed already', 'output': 'I don\'t have the capability to save files or interact with the file system directly. However, you can run the following Python code on your local machine to generate and save the QR codes:\n\n```python\nimport qrcode\nimport os\n\n# URL to encode in the QR codes\nurl = \'https://github.com/junfanz1\'\n\n# Directory to save QR codes\ndirectory = \'qr_codes\'\nos.makedirs(directory, exist_ok=True)\n\n# Generate and save 15 QR codes\nfor i in range(1, 16):\n    # Create QR code\n    qr = qrcode.QRCode(\n        version=1,\n        error_correction=qrcode.constants.ERROR_CORRECT_L,\n        box_size=10,\n        border=4,\n    )\n    qr.add_data(url)\n    qr.make(fit=True)\n\n    # Create an image from the QR Code instance\n    img = qr.make_image(fill_color="black", back_color="white")\n\n    # Save the image\n    img.save(os.path.join(directory, f\'qr_code_{i}.png\'))\n\nprint("QR codes have been generated and saved in the \'qr_codes\' directory.")\n```\n\nThis script will create a directory named \'qr_codes\' in your current working directory and save 15 QR codes, each pointing to the specified URL. Each QR code will be saved as a separate PNG file with a unique name.'}
 
 Process finished with exit code 0
+```
 ```
 
 ![image](https://github.com/user-attachments/assets/1531a419-60e7-4118-96c0-fe263920e301)
