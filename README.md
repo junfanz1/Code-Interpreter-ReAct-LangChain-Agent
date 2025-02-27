@@ -1,18 +1,14 @@
-
 This project combines two functionalities: a Code Interpreter using LLM Agent Orchestration and Tool Utilization, and a ReAct LangChain Agent example.
 
-<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
-<!-- TOC --><a name="react-langchain-agent-example"></a>
-# ReAct LangChain Agent
-
-This repository demonstrates the creation of a simple ReAct agent using LangChain, integrated with a custom tool to calculate the length of a given text. It serves as a foundational example for building more complex, tool-augmented LLM applications.
 
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=junfanz1/react-langchain&type=Date)](https://star-history.com/#junfanz1/react-langchain&Date)
 
 ## Contents
-- [ReAct LangChain Agent](react-langchain-agent-example)
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
+
+- [ReAct LangChain Agent](#react-langchain-agent)
    * [Project Purpose](#project-purpose)
    * [LLM Technology Stack](#llm-technology-stack)
    * [Challenges and Difficulties](#challenges-and-difficulties)
@@ -33,6 +29,11 @@ This repository demonstrates the creation of a simple ReAct agent using LangChai
 - [Code Interpreter: LLM Agent Orchestration and Tool Utilization](#code-interpreter-llm-agent-orchestration-and-tool-utilization)
    * [1. Purpose of the Project](#1-purpose-of-the-project)
    * [2. Input and Output](#2-input-and-output)
+- [URL to generate QR codes for](#url-to-generate-qr-codes-for)
+- [Generate and save 15 QR codes](#generate-and-save-15-qr-codes)
+- [URL to encode in the QR codes](#url-to-encode-in-the-qr-codes)
+- [Directory to save QR codes](#directory-to-save-qr-codes)
+- [Generate and save 15 QR codes](#generate-and-save-15-qr-codes-1)
    * [3. LLM Technology Stack](#3-llm-technology-stack)
    * [4. Challenges and Difficulties](#4-challenges-and-difficulties)
    * [5. Future Business Impact and Further Improvements](#5-future-business-impact-and-further-improvements)
@@ -54,6 +55,10 @@ This repository demonstrates the creation of a simple ReAct agent using LangChai
    * [Reference](#reference)
 
 <!-- TOC end -->
+<!-- TOC --><a name="react-langchain-agent"></a>
+# ReAct LangChain Agent
+
+This repository demonstrates the creation of a simple ReAct agent using LangChain, integrated with a custom tool to calculate the length of a given text. It serves as a foundational example for building more complex, tool-augmented LLM applications.
 
 <!-- TOC --><a name="project-purpose"></a>
 ## Project Purpose
@@ -403,8 +408,16 @@ The "Code Interpreter" project demonstrates the orchestration of multiple Langua
 <!-- TOC --><a name="2-input-and-output"></a>
 ## 2. Input and Output
 
-* **Input:** Natural language queries.
-* **Output:**
+* **Inputs:** Natural language queries.
+- generate and save in current working directory 15 QR codes that point to https://github.com/junfanz1, you have QR code package installed already"
+- how many columns are there in file bar_data.csv
+- what is the change of close in file bar_data.csv
+
+Using Router Grand Agent. Python Agent is useful when you need to transform natural language to python and execute the python code, returning the results of the code execution. CSV Agent is useful when you need to answer question over bar_data.csv file, takes an input the entire question and returns the answer after running pandas calculations.
+- which date has the biggest volume?
+- generate and save in current working directory 15 QR codes that point to https://github.com/junfanz1, you have QR code package installed already
+
+* **Outputs:**
     * Results from Python code execution (e.g., generated QR codes).
     * Answers to questions about CSV data.
     * Orchestrated responses from multiple agents.
@@ -606,9 +619,11 @@ Action Input:
 ```python
 import qrcode
 
+<!-- TOC --><a name="url-to-generate-qr-codes-for"></a>
 # URL to generate QR codes for
 url = "https://github.com/junfanz1"
 
+<!-- TOC --><a name="generate-and-save-15-qr-codes"></a>
 # Generate and save 15 QR codes
 for i in range(15):
     qr = qrcode.QRCode(
@@ -633,13 +648,16 @@ Final Answer: I don't have the capability to save files or interact with the fil
 import qrcode
 import os
 
+<!-- TOC --><a name="url-to-encode-in-the-qr-codes"></a>
 # URL to encode in the QR codes
 url = 'https://github.com/junfanz1'
 
+<!-- TOC --><a name="directory-to-save-qr-codes"></a>
 # Directory to save QR codes
 directory = 'qr_codes'
 os.makedirs(directory, exist_ok=True)
 
+<!-- TOC --><a name="generate-and-save-15-qr-codes-1"></a>
 # Generate and save 15 QR codes
 for i in range(1, 16):
     # Create QR code
