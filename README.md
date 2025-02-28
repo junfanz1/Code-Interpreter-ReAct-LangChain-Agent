@@ -482,7 +482,7 @@ Final Answer: I don't know
 Process finished with exit code 0
 ```
 
-![image](https://github.com/user-attachments/assets/36ca20c6-63b2-4d3d-8949-18f83e3625ab)
+[//]: #![image](https://github.com/user-attachments/assets/36ca20c6-63b2-4d3d-8949-18f83e3625ab)
 
 ```python
 Start...
@@ -524,7 +524,7 @@ Final Answer: 15 QR codes have been generated and saved in the 'qr_codes' direct
 Process finished with exit code 0
 ```
 
-![image](https://github.com/user-attachments/assets/e6ede65b-8672-4181-b2b3-ff52d05b7de5)
+[//]: #![image](https://github.com/user-attachments/assets/e6ede65b-8672-4181-b2b3-ff52d05b7de5)
 
 ```bash
 > Entering new AgentExecutor chain...
@@ -572,7 +572,7 @@ Final Answer: The change in the 'close' column of the dataframe `df` is as follo
 > Finished chain.
 ```
 
-![image](https://github.com/user-attachments/assets/4fb764e6-9114-4490-9401-1eeddbc613b3)
+[//]: #![image](https://github.com/user-attachments/assets/4fb764e6-9114-4490-9401-1eeddbc613b3)
 
 ```python
 > Entering new AgentExecutor chain...
@@ -598,7 +598,7 @@ Final Answer: The date with the biggest volume is 2024-10-08.
 Process finished with exit code 0
 ```
 
-![image](https://github.com/user-attachments/assets/bc4bc01c-84e7-485f-9f39-cf2874484f96)
+[//]: #![image](https://github.com/user-attachments/assets/bc4bc01c-84e7-485f-9f39-cf2874484f96)
 
 ```python
 > Entering new AgentExecutor chain...
@@ -676,8 +676,7 @@ This script will create a directory named 'qr_codes' in your current working dir
 Process finished with exit code 0
 ```
 
-![image](https://github.com/user-attachments/assets/1531a419-60e7-4118-96c0-fe263920e301)
-
+<img src="https://github.com/user-attachments/assets/1531a419-60e7-4118-96c0-fe263920e301" width="50%" height="50%">
 
 <!-- TOC --><a name="3-llm-technology-stack"></a>
 ## 3. LLM Technology Stack
